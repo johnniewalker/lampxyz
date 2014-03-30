@@ -14,10 +14,15 @@ This is the plan for the project structure. Check against actual directory to se
 
 * docs/
  * requirements.org 
+ 
 ..A note to explain the requirements change process and how requirements are stored. I base the system on the ideas found in Steve McConnell's book 'Software Project Survival Guide'.
+
  * non-user-documentation.org 
+ 
 ..Any requirements that cannot be classed as User Documentation go in this orgmode document. For this project the definition of a 'User' is very broad.
+
  * user-documentation.org
+ 
 ..All other requirements go in this orgmode document in the form of User Documentation.
  
 
