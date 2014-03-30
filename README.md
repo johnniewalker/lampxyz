@@ -119,7 +119,7 @@ This is the plan for the project structure. Check against actual directory to se
  
  When the project is deployed, this directory sits on the web server. This directory is not accessable by the public but it does contain the directory that is. In other words it contains the directory that contains the site's home page. `websrv/` also contains things like the web application code, vendor's library code and application data. 
  
- Because no one can agree on terminology to describe this directory, I tend to set an environment variable in Apache's config for this directory called something along the lines of `BEHIND_HTDOCS` for use by scripts and to make it's purpose clear and to explicitly state that it is not meant to be accessable by the public.
+ Because no one can agree on terminology to describe this directory, I tend to set an environment variable in Apache's config for this directory called something along the lines of `DOCROOT_PARENT_DIR` for use by scripts and to make it's purpose clear and to explicitly state that it is not meant to be accessable by the public.
  
  
 #### appdata/
