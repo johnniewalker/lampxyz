@@ -1,7 +1,7 @@
 lampxyz
 =======
 
-A demonstation project that uses Linux, Apache, Mysql, Php, Xandria, Yalla and Zend technologies.
+A demonstration project that uses Linux, Apache, Mysql, Php, Xandria, Yalla and Zend technologies.
 
 This demo is to be used as a cheat-sheet for new projects.
 
@@ -26,10 +26,21 @@ This is the plan for the project structure. Check against actual directory to se
  README.md
 ```
 
-Much of this structure is based on tips that I picked up from the book *Pragmatic Vesion Control Using Subversion 2nd Edtion, By Mike Mason (page 138-139)*.
+Much of this structure is based on tips that I picked up from the following books:
+
+* *Pragmatic Vesion Control Using Subversion 2nd Edtion (2006), By Mike Mason (page 138-139)*, and
+* *The Art of Unix Programming (2004), by Eric S. Raymond (page 452)*
+
+---
+
 
 * data/
+ 
+ A single location to put any data that the project might need to carry (i.e information needed to populate lookup tables in the database).
+
 * db/
+ 
+ A place to store all the database schema related stuff. Scripts that describe the initial schema, scripts that update that schema and scripts to migrate data between schema changes or version changes.
 
 * docs/
   
@@ -56,8 +67,16 @@ Much of this structure is based on tips that I picked up from the book *Pragmati
  A place to store copies of releases of 3rd party code that the project depends on. This may be a bit of duplicatoin but is just to ensure that if that vendor disappears into the ether, it won't hamper this project as well. 
 
 * websrv/
+ 
+ When the project is deployed, this directory sits on the server but is not accessable by the public. It is the  place to put the web root (a.k.a publicdocs/httpdocs/www) directory, the web application, vendor library's and application data.
+
 * LICENSE
+
+ A document that explains how the copyright oweners of the project expect people to behave in terms of the intellectual property.
+
 * README.md
+ This file. A description of the project's purpose an overview of the project directory contents. According to *The Art of Unix Programming* book, by convention, the README file is the first place that one should look when trying to understand more about a directory.
+
 
 
  
