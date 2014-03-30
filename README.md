@@ -7,6 +7,20 @@ This demo is to be used as a cheat-sheet for new projects.
 
 Note: Xandria and Yalla are two projects under incubation under my GitHub account. So, there is not much info about them out there just yet. Browse the projects at https://github.com/johnniewalker for more information.
 
+
+# Directory Naming Conventions Borrowed
+
+Much of this structure is based on tips that I picked up from the following books:
+
+* *Pragmatic Version Control Using Subversion 2nd Edtion (2006), By Mike Mason (page 138-139)*, and
+* *The Art of Unix Programming (2004), by Eric S. Raymond (page 452)*
+
+Also of note: Many projects also mimic the directory usage and naming conventions set out in the *Filesystem Hierarchy Standard*.
+* http://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard -- Wikipedia entry about *Filesystem Hierarchy Standard*
+* http://refspecs.linuxfoundation.org/fhs.shtml -- The official specfications. No more than 50, A4, pages of information that will explain a huge amount the meaning of many directories in the world.
+
+---
+
 # Planned Project Directory Structure
 
 This is the plan for the project structure. Check against actual directory to see if the structure came out according to plan.
@@ -22,10 +36,11 @@ This is the plan for the project structure. Check against actual directory to se
  my-meta-project-tools/
  vendorsrc/
  websrv/
-  app/
   appdata/
    app_logs/
-    atomic_logs
+    atomic_logs/
+     archive/
+     inbox/
    cache/
    SqliteData/
    test-data/
@@ -34,11 +49,28 @@ This is the plan for the project structure. Check against actual directory to se
    uploads/
   error_docs/
   httpdocs-err-notice-site-flat/
+   .htaccess
    index.htm
   httpdocs/
+   .htaccess
    index.php
-  src/
+  inc_library/
+   app/
    tests/
+    tests/
+     acceptance_tests/
+     data_tests/
+     fixtures/
+     setup_tests/
+     intgrtn_tsts/
+     unit_tests/
+     exsuite_tests/
+      LanguageTests
+      ThrowawayScripts/
+      pagestraps/
+     run_test.php 
+     all_tests.php
+    testsuite_interface/
    vendor/
   vm-conf/
   vm-statistics.example
@@ -49,20 +81,6 @@ This is the plan for the project structure. Check against actual directory to se
  LICENSE
  README.md
 ```
-
-# Directory Naming Conventions Borrowed
-
-Much of this structure is based on tips that I picked up from the following books:
-
-* *Pragmatic Version Control Using Subversion 2nd Edtion (2006), By Mike Mason (page 138-139)*, and
-* *The Art of Unix Programming (2004), by Eric S. Raymond (page 452)*
-
-Also of note: Many projects also mimic the directory usage and naming conventions set out in the *Filesystem Hierarchy Standard*.
-* http://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard -- Wikipedia entry about *Filesystem Hierarchy Standard*
-* http://refspecs.linuxfoundation.org/fhs.shtml -- The official specfications. No more than 50, A4, pages of information that will explain a huge amount the meaning of many directories in the world.
-
-
----
 
 
 ## data/
@@ -99,12 +117,10 @@ Also of note: Many projects also mimic the directory usage and naming convention
 
 ## websrv/
  
- When the project is deployed, this directory sits on the web server. This directory is not accessable by the public but it does contain the directory that is. In other words it contains the directory that contains the site's home page. `websrv/` also contains things like the web application code, vendor's library code and application data.
+ When the project is deployed, this directory sits on the web server. This directory is not accessable by the public but it does contain the directory that is. In other words it contains the directory that contains the site's home page. `websrv/` also contains things like the web application code, vendor's library code and application data. 
  
-
-### app/
-
- Instances of Zend Framework applications. Model, controller and view code.
+ Because no one can agree on terminology to describe this directory, I tend to set an environment variable in Apache's config for this directory called something along the lines of `BEHIND_HTDOCS` for use by scripts and to make it's purpose clear and to explicitly state that it is not meant to be accessable by the public.
+ 
  
 #### appdata/
 
@@ -121,11 +137,11 @@ Also of note: Many projects also mimic the directory usage and naming convention
  
 ####### archive
  
- Move atomic logs to here to allow the inbox to be cleared regulary.
+ Move atomic logs to here to allow the atomic log inbox to be cleared regulary while allowing us to keep a record of outstanding issues.
  
 ####### inbox 
 
- The application writes `atomic logs` to here. The *`atomic log` browser* can look in here for latest logs.
+ The application writes `atomic logs` to here. The *atomic log browser* can look in here for latest logs.
  
 ##### cache/
 
@@ -148,14 +164,92 @@ Also of note: Many projects also mimic the directory usage and naming convention
  A place for test code to write and wipe during unit tests. Version control systems generally ignore all files inside here.
  
 ##### uploads/
+
+ Somewhere for the application to store uploaded data.
+ 
 #### error_docs/
+
+ Standard html files to represent the various http errors that may occur. This directory tends to be pre-filled with data by many web hosts / web host management tools.
+ 
 #### httpdocs-err-notice-site-flat/
-##### index.htm
+
+ A very light (but pretty), emergency, static web site ready to be swappped into place of the normal `httpdocs` directory if things start going wrong.
+
 #### httpdocs/
+
+ The home for public documents like images, cascading style sheets (css), javascript scripts, the web site's home page and other static pages, *bootstraps* or *bootpages*.
+ 
+##### .htaccess
+
+ The web root 
 ##### index.php
-#### src/
+
+ The main bootstrap page.
+ 
+#### inc_library/
+
+ The place to store included scripts. This (or it's subdiretories) is mentioned in the include path.
+
+##### app/
+
+ Instances of Zend Framework applications. Model, controller and view code.
+
 ##### tests/
+
+ The home for test code.
+
+###### tests/
+
+ To store unit tests, test runners and test fixtures
+ 
+ acceptance_tests/ -- Web tests run over http to mimic the behaviour of a user.
+ 
+ data_tests/ -- Tests that (a) ensure the db is set-up correctly or (b) can only be run once the db is set-up. 
+ 
+ fixtures/ -- Not tests. 
+ 
+ setup_tests/ -- Run to test the environment is set-up correctly.
+ 
+ intgrtn_tsts/ -- Test more than one class at the same time.
+ 
+ unit_tests/ -- Test one class at a time.
+ 
+ exsuite_tests/ -- A place to put non-unit test code.
+ 
+   LanguageTests -- Quick scripts to experiment / confirm how a particular scripting language works.
+ 
+   ThrowawayScripts/ -- A bin for stuff that can be deleted without worry.
+ 
+   pagestraps/ -- Manually run visual tests for controllers and views.
+ 
+ run_test.php -- Test runner script includes the appropriate test / suite of tests.
+ 
+ all_tests.php -- A suite to run all tests.
+ 
+ 
+###### testsuite_interface/  
+
+ To store a web interface application that provide a GUI to unit tests.
+ 
 ##### vendor/
+ 
+ 3rd party code libraries. Basically anything that is not part of any of the MVC applications hosted on this virtual host/ host.  
+ 
+ I tend to contain each library in a parent named after the version. This enables me to toggle the include path to upgrade to a newer version of the library whilst keeping the older version standing in place in case we need to revert.
+ 
+###### simpletest-x-y-z/
+###### simpletest/
+
+###### Zend-v-a-b-c/
+####### Zend/
+
+###### Zend-v-x-y-z/
+####### Zend/
+
+###### Xandria-v-x-y-z/
+####### Xandria/
+
+
 #### vm-conf/
 #### vm-statistics.example
 ##### logs/
