@@ -13,12 +13,23 @@ This is the plan for the project structure. Check against actual directory to se
 
 ```
 /
+ data/
+ db/
  docs/
   requirements.org  
   non-user-documentation.org 
   user-documentation.org
-  
+ my-meta-project-tools/
+ vendorsrc/
+ websrv/
+ LICENSE
+ README.md
 ```
+
+Much of this structure is based on tips that I picked up from the book *Pragmatic Vesion Control Using Subversion 2nd Edtion, By Mike Mason (page 138-139)*.
+
+* data/
+* db/
 
 * docs/
   
@@ -35,6 +46,21 @@ This is the plan for the project structure. Check against actual directory to se
 * user-documentation.org
 
  All other requirements go in this orgmode document in the form of User Documentation.
+ 
+* my-meta-project-tools/
+ 
+ A place to put custom tools that analyse the code. i.e a *PhpDocRunnerApp* to break up the automatic code documentation generation process if the project is too large.
+
+* vendorsrc/
+
+ A place to store copies of releases of 3rd party code that the project depends on. This may be a bit of duplicatoin but is just to ensure that if that vendor disappears into the ether, it won't hamper this project as well. 
+
+* websrv/
+* LICENSE
+* README.md
+
+
+ 
  
 
  
