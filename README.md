@@ -28,7 +28,7 @@ This is the plan for the project structure. Check against actual directory to se
 
 Much of this structure is based on tips that I picked up from the following books:
 
-* *Pragmatic Vesion Control Using Subversion 2nd Edtion (2006), By Mike Mason (page 138-139)*, and
+* *Pragmatic Version Control Using Subversion 2nd Edtion (2006), By Mike Mason (page 138-139)*, and
 * *The Art of Unix Programming (2004), by Eric S. Raymond (page 452)*
 
 ---
