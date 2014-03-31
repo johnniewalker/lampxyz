@@ -1,0 +1,8 @@
+REM START firefox -new-window "https://www.lampxyz.co.uk.vm/yalla/"
+START explorer "C:\_me\websrv\lampxyz\websrv\inc_library\tests" 
+REM START firefox -new-window "https://www.lampxyz.co.uk.vm/yalla/testsuite/"
+START explorer "C:\_me\websrv\lampxyz\websrv\inc_library\vendor" 
+START explorer "C:\_me\websrv\lampxyz\websrv\appdata" 
+START explorer "C:\_me\websrv\lampxyz\websrv\httpdocs" 
+START explorer "C:\_me\websrv"
+REM START chrome.exe -new-window "https://github.com/johnniewalker/lampxyz/wiki"
