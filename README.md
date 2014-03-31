@@ -249,6 +249,9 @@ This is the plan for the project structure. Check against actual directory to se
 ###### Xandria-v-x-y-z/
 ####### Xandria/
 
+#### tools/
+
+ Developer tools and scripts.
 
 #### vm-conf/
 #### vm-statistics.example
